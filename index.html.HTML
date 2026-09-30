@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBS Gestão de Atendimento - Painel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <h1>🏥 UBS - Sistema de Atendimento</h1>
+            <p>Gerenciamento de Fila e Triagem Diária</p>
+        </div>
+    </header>
+
+    <main class="container main-grid">
+        <!-- Coluna Esquerda: Formulário e Painel de Chamada -->
+        <section class="left-column">
+            <!-- A. Formulário de Entrada -->
+            <div class="card">
+                <h2>Recepção de Pacientes</h2>
+                <form id="form-paciente">
+                    <div class="form-group">
+                        <label for="nome">Nome do Paciente:</label>
+                        <input type="text" id="nome" required placeholder="Digite o nome completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="documento">Cartão SUS ou CPF:</label>
+                        <input type="text" id="documento" required placeholder="000.000.000-00 ou Cartão SUS">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo">Tipo de Atendimento:</label>
+                        <select id="tipo" required>
+                            <option value="" disabled selected>Selecione o serviço</option>
+                            <option value="Triagem">Triagem</option>
+                            <option value="Consulta Médica">Consulta Médica</option>
+                            <option value="Vacinação">Vacinação</option>
+                            <option value="Curativo">Curativo</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Adicionar à Fila</button>
+                </form>
+            </div>
+
+            <!-- B. Painel de Atendimento Atual -->
+            <div class="card highlight-card">
+                <h2>Painel de Chamada</h2>
+                <div id="em-atendimento" class="current-call">
+                    <p class="empty-text">Nenhum paciente sendo atendido no momento.</p>
+                </div>
+                <button id="btn-chamar" class="btn btn-success">Chamar Próximo Paciente</button>
+            </div>
+        </section>
+
+        <!-- Coluna Direita: Fila de Espera e Métricas -->
+        <section class="right-column">
+            <!-- C. Indicadores do Dia (Métricas) -->
+            <div class="card metrics-card">
+                <div class="metrics-header">
+                    <h2>Indicadores do Dia</h2>
+                    <button id="btn-reset" class="btn btn-danger-outline" title="Zera filas e contadores">Reiniciar o Dia</button>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <span id="contador-total" class="metric-number">0</span>
+                        <span class="metric-label">Total Atendidos</span>
+                    </div>
+                    <div class="metric-box">
+                        <span id="contador-triagem" class="metric-number">0</span>
+                        <span class="metric-label">Triagem</span>
+                    </div>
+                    <div class="metric-box">
+                        <span id="contador-consulta" class="metric-number">0</span>
+                        <span class="metric-label">Consulta</span>
+                    </div>
+                    <div class="metric-box">
+                        <span id="contador-vacinacao" class="metric-number">0</span>
+                        <span class="metric-label">Vacinação</span>
+                    </div>
+                    <div class="metric-box">
+                        <span id="contador-curativo" class="metric-number">0</span>
+                        <span class="metric-label">Curativo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fila de Espera -->
+            <div class="card">
+                <h2>Fila de Espera</h2>
+                <div class="table-responsive">
+                    <table class="queue-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Serviço</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-fila">
+                            <!-- Inserido dinamicamente via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 - Unidade Básica de Saúde (UBS) | Desenvolvido para fins acadêmicos e práticos.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
